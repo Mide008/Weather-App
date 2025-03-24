@@ -347,3 +347,8 @@ function updateCardGlow(weatherCondition) {
     
     weatherDetailsReport.style.boxShadow = `0 8px 32px ${glowColor}, 0 0 16px ${glowColor}`;
 }
+
+
+
+
+

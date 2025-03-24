@@ -407,158 +407,44 @@
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 }
 
-@media (max-width: 1200px) {
-    .weather-details-report {
-        width: 60%;
-    }
-}
-
-@media (max-width: 992px) {
-    .weather-details-report {
-        width: 70%;
-    }
-    .below-input {
-        width: 80%;
-    }
-}
-
 @media (max-width: 768px) {
-    .full-page {
-        padding: 1rem;
-    }
-    
-    .weather-details-report {
-        width: 90%;
-        padding: 1.2rem 1.5rem;
-    }
-    
     .below-input {
         width: 90%;
         flex-direction: column;
         row-gap: 1rem;
     }
-    
+
     .input-search {
         width: 100%;
     }
-    
+
     .get-weather-button {
-        width: 100%; 
+        width: 100%;
     }
-    
-    .numb {
-        font-size: 5rem;
-    }
-    
-    /* Title spacing adjustment for mobile */
-    .title-head {
-        padding-bottom: 1.5rem;
-    }
-    
-    /* Keep the cloud icon visible on mobile */
-    .title-head h2 i {
-        display: inline-block;
-        margin-right: 0.3rem;
-    }
-    
-    /* Show both icon and text on mobile */
-    .title-head h2 {
-        font-size: 1.8rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-wrap: nowrap;
+
+    .get-weather-button button {
+        width: 100%;
+        padding: 0.7rem;
+        font-size: 1rem;
     }
 }
 
 @media (max-width: 576px) {
-    .get-weather-button {
-        width: 100%; 
+    .below-input {
+        width: 95%;
     }
-    
-    .weather-details-report {
-        width: 100%;
-        padding: 1rem;
-    }
-    
-    .down-details {
-        flex-direction: column;
-        row-gap: 1.5rem;
-        align-items: center;
-    }
-    
-    .title-head h2 {
-        font-size: 1.5rem;
-    }
-    
-    .first-part, .second-part, .third-part {
-        width: 100%;
-        padding-bottom: 0.5rem;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    
-    .third-part {
-        border-bottom: none;
-    }
-    
-    .down-details {
-        padding: 1rem 0.8rem;
-    }
-    
-    .numb {
-        font-size: 4.5rem;
-    }
-    
-    .grp-state h4 {
-        font-size: 1.8rem;
-    }
-    
-    .grp-state h3 {
-        font-size: 2.2rem;
-    }
-    
-    .feeling {
-        font-size: 1.3rem;
-    }
-    
-    /* Better spacing in mobile layout */
-    .temperature-box {
-        padding: 0.5rem 0;
-    }
-    
-    /* Improved styling for the search input on very small screens */
-    .input-search input {
-        padding: 0.7rem 3rem;
-        font-size: 0.9rem;
-    }
-}
 
-/* Added extra small device support */
-@media (max-width: 375px) {
+    .input-search {
+        width: 100%;
+    }
+
     .get-weather-button {
-        width: 100%; 
+        width: 100%;
     }
-    .title-head h2 {
-        font-size: 1.3rem;
-    }
-    
-    .weather-details-report {
-        row-gap: 1.2rem;
-    }
-    
-    .down-percent {
-        font-size: 1.2rem;
-    }
-    
-    .numb {
-        font-size: 4rem;
-    }
-    
-    .city-name {
-        font-size: 1.1rem;
-    }
-    
-    .full-page {
-        padding: 0.8rem;
+
+    .get-weather-button button {
+        width: 100%;
+        padding: 0.7rem;
+        font-size: 1rem;
     }
 }

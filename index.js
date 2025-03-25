@@ -37,7 +37,7 @@ function formatTime(date) {
     const ampm = hours >= 12 ? 'P.M' : 'A.M';
     
     hours = hours % 12;
-    hours = hours ? hours : 12; // the hour '0' should be '12'
+    hours = hours ? hours : 12; 
     
     const formattedMinutes = minutes < 10 ? '0' + minutes : minutes;
     
@@ -102,11 +102,11 @@ function setWeatherBackground(weatherCondition, isNight = false) {
 
 // Function to check if it's night time at a specific location
 function isNightTime(data) {
-    const currentTime = Math.floor(Date.now() / 1000); // Current time in Unix timestamp
+    const currentTime = Math.floor(Date.now() / 1000); 
     return currentTime < data.sys.sunrise || currentTime > data.sys.sunset;
 }
 
-// Function to get weather data using XMLHttpRequest
+// Function to get weather data using Fetch API
 function getWeatherData(city) {
     const button = document.querySelector(".get-weather-button button");
     button.classList.add("loading");
@@ -114,39 +114,37 @@ function getWeatherData(city) {
     
     const endPoint = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`;
     
-    const request = new XMLHttpRequest();
-    request.open("GET", endPoint, true);
-    request.send();
-    
-    request.onreadystatechange = function() {
-        if (request.readyState === 4) {
+    fetch(endPoint)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('City not found');
+            }
+            return response.json();
+        })
+        .then(weather => {
+            console.log(weather);
+            updateWeatherUI(weather);
+            
+            // Add animation classes
+            weatherDetailsReport.style.opacity = "0.8";
+            setTimeout(() => {
+                weatherDetailsReport.style.opacity = "1";
+            }, 100);
+            
+            button.classList.remove("loading");
+            button.textContent = "Get Weather";
+        })
+        .catch(error => {
             button.classList.remove("loading");
             button.textContent = "Get Weather";
             
-            if (request.status === 200) {
-                const weather = JSON.parse(request.responseText);
-                console.log(weather);
-                updateWeatherUI(weather);
-                
-                // Add animation classes
-                weatherDetailsReport.style.opacity = "0.8";
-                setTimeout(() => {
-                    weatherDetailsReport.style.opacity = "1";
-                }, 100);
-            } else {
+            if (error.message === 'City not found') {
                 showError("City not found. Please try again.");
-                console.error("Error fetching weather data:", request.statusText);
+            } else {
+                showError("Network error. Please check your connection.");
             }
-        }
-    };
-    
-    // Handle network errors
-    request.onerror = function() {
-        button.classList.remove("loading");
-        button.textContent = "Get Weather";
-        showError("Network error. Please check your connection.");
-        console.error("Network error occurred");
-    };
+            console.error("Error fetching weather data:", error);
+        });
 }
 
 // Function to update UI with weather data
@@ -347,8 +345,4 @@ function updateCardGlow(weatherCondition) {
     
     weatherDetailsReport.style.boxShadow = `0 8px 32px ${glowColor}, 0 0 16px ${glowColor}`;
 }
-
-
-
-
 
